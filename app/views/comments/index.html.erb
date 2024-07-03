@@ -1,0 +1,28 @@
+<h2>Все комментарии.</h2>
+
+
+<% @comments.each do |comment| %>
+
+	<div class = "comment">	
+		<p>Email: <%= comment.name %></p>
+		<p>Текст:<strong><%= link_to comment.text, comment_path(comment) %></strong></p>
+		<p>Дата создания: <%= comment.date %></p>
+		<%= link_to 'Удалить', comment_path(comment), method: :delete, data: { confirm: 'Вы уверены?' } %>
+		<hr>
+	</div>
+<% end %>
+
+<br>
+
+<%= form_with(model: @comment, local: true) do |form| %>
+  <p><%= form.label :name, "Email" %></p>
+  <p><%= form.text_field :name %></p><br>
+
+  <p><%= form.label :text, "Текст" %></p>
+  <p><%= form.text_area :text, rows: 5 %></p><br>
+  	
+  <p><%= form.label :date, "Дата создания" %></p>
+  <p><%= form.text_field :date %></p><br>
+  
+  <p><%= form.submit 'Добавить комментарий' %></p>
+<% end %>
