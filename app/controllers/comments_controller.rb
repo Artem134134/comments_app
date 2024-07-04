@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
 
-	 def index
+	def index
     @comments = Comment.all
   end
 
@@ -17,6 +17,7 @@ class CommentsController < ApplicationController
       redirect_to comments_path
     else
       rander :new
+    end
   end
 
   def edit
@@ -27,7 +28,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment.update(comment_params)
-      redirect_to @comment
+      redirect_to comments_path
     else
       rander :edit
     end  
@@ -39,11 +40,12 @@ class CommentsController < ApplicationController
 
       redirect_to comments_path
   end
-  
+
 
   private 
 
   def comment_params
   	params.require(:comment).permit(:name, :text, :date)
   end
+
 end

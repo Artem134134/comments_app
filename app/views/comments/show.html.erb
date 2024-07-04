@@ -1,0 +1,10 @@
+<h3><%= @comment.name %></h3>
+	<p><%= @comment.text %></p><br>
+
+	<nav>
+     <%= link_to "Изменить", edit_comment_path(@comment) %> |
+     <%= link_to "Все комментарии.", comments_path(@comments) %>
+  </nav>
+  <br>
+
+<%= button_to "Удалить", comment_path(@comment), formmethod: :delete, data: {confirm: "Удалить?"} %>
